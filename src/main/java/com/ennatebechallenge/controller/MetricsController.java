@@ -1,7 +1,7 @@
 package com.ennatebechallenge.controller;
 
 import com.ennatebechallenge.model.PersonWeight;
-import com.ennatebechallenge.service.MetricsService;
+import com.ennatebechallenge.service.PersonWeightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/metrics")
 public class MetricsController {
-    private final MetricsService metricsService;
+    private final PersonWeightService personWeightService;
 
     @Autowired
-    public MetricsController(MetricsService metricsService) {
-        this.metricsService = metricsService;
+    public MetricsController(PersonWeightService personWeightService) {
+        this.personWeightService = personWeightService;
     }
 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public void create(@RequestBody PersonWeight personWeight){
-        metricsService.saveWeightData(personWeight);
+        personWeightService.saveWeightAndAlert(personWeight);
     }
 
 
