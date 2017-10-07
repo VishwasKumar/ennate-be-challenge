@@ -1,6 +1,7 @@
 package com.ennatebechallenge.service;
 
 import com.ennatebechallenge.model.PersonWeight;
+import com.ennatebechallenge.repository.impl.AlertRepositoyImpl;
 import com.ennatebechallenge.repository.impl.MetricsRepositoryImpl;
 import com.ennatebechallenge.rules.OverWeightRule;
 import com.ennatebechallenge.rules.UnderWeightRule;
@@ -17,6 +18,8 @@ public class PersonWeightService {
     private UnderWeightRule underWeightRule;
     private OverWeightRule overWeightRule;
     private RulesEngine rulesEngine;
+    private MetricsRepositoryImpl metricsRepository;
+    private AlertRepositoyImpl alertRepositoy;
 
     @Autowired
     public PersonWeightService(Datastore datastore, UnderWeightRule underWeightRule, OverWeightRule overWeightRule) {
@@ -28,7 +31,11 @@ public class PersonWeightService {
 
     public void saveWeightAndAlert(PersonWeight personWeight){
         saveAlert(personWeight);
-        MetricsRepositoryImpl metricsRepository = new MetricsRepositoryImpl(datastore);
+        commitPersonWeight(personWeight);
+    }
+
+    private void commitPersonWeight(PersonWeight personWeight) {
+        this.metricsRepository = new MetricsRepositoryImpl(datastore);
         metricsRepository.create(personWeight);
     }
 
