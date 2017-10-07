@@ -22,6 +22,7 @@ public class BaseRepository<T, ID extends Serializable> implements CrudRepositor
 
     @Override
     public void create(T entity) {
+        System.out.println("writing alert");
         datastore.save(entity);
     }
 
@@ -39,14 +40,17 @@ public class BaseRepository<T, ID extends Serializable> implements CrudRepositor
 
     @Override
     public List<PersonWeight> getMetricsInRange(long start, long end) {
-        Query<PersonWeight> query = datastore.createQuery(PersonWeight.class);
-        query = query.filter("timeStamp >=", start).filter("timeStamp <=", end);
-        return query.asList();
+        return datastore.createQuery(PersonWeight.class)
+                .filter("timeStamp >=", start)
+                .filter("timeStamp <=", end)
+                .asList();
     }
 
     @Override
     public List<Alert> getAlertInRange(long start, long end) {
-        return datastore.createQuery(Alert.class).filter("timeStamp >=", start)
-                .filter("timeStamp <=", end).asList();
+        return datastore.createQuery(Alert.class)
+                .filter("timeStamp >=", start)
+                .filter("timeStamp <=", end)
+                .asList();
     }
 }

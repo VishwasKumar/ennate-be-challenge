@@ -9,7 +9,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -17,27 +16,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class MetricsControllerTest {
+public class AlertsControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void create() throws Exception {
-        String json = "{\n" +
-                "  \"timeStamp\": 1313045045, \n" +
-                "  \"weight\": 130\n" +
-                "}";
-        mockMvc.perform(post("/metrics/create").contentType(MediaType.APPLICATION_JSON).content(json))
-                .andExpect(status().isOk());
+    public void getAllWeights() throws Exception {
+        mockMvc.perform(get("/alert/read"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+        mockMvc.perform(get("/alert/read?start=123&end=5432"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
     }
 
-    @Test
-    public void testGetAllMetrics() throws Exception {
-        mockMvc.perform(get("/metrics/read?start=123&end=5432"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
-        mockMvc.perform(get("/metrics/read"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
-    }
 }

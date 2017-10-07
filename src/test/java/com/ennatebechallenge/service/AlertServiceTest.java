@@ -1,7 +1,6 @@
 package com.ennatebechallenge.service;
 
 import com.ennatebechallenge.model.Alert;
-import com.ennatebechallenge.repository.impl.AlertRepositoyImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -17,8 +16,6 @@ public class AlertServiceTest {
     private Datastore datastore;
     @Mock
     private Query<Alert> query;
-    @Mock
-    private AlertRepositoyImpl alertRepositoy;
     private AlertService alertService;
     private Alert alert;
     @Before

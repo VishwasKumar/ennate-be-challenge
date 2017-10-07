@@ -24,10 +24,11 @@ public class MetricsController {
     }
 
     @RequestMapping(value = "/read")
-    public @ResponseBody
-    List<PersonWeight> getAllWeights(){
-        personWeightService.getWeightsInRange(1313045029, 1313045030);
-        return personWeightService.getAllWeights();
+    public @ResponseBody List<PersonWeight> getAllWeights
+            (@RequestParam(value = "start", required = false, defaultValue = "-1")long start,
+             @RequestParam(value = "stop", required = false, defaultValue = "-1")long stop){
+        return (start != -1 && stop != -1) ? personWeightService.getAllWeights() :
+                personWeightService.getWeightsInRange(start, stop);
     }
 
 }
