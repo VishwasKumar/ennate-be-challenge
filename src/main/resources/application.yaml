@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      database: morphia
+      uri: mongodb://localhost:27017
+logging:
+  level:
+    root: info
+    com.jipasoft.morphia: debug

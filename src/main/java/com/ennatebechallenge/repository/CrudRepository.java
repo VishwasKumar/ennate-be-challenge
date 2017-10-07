@@ -1,4 +1,4 @@
-package ennatebechallenge.repository;
+package com.ennatebechallenge.repository;
 
 import org.mongodb.morphia.Key;
 
