@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mongodb.morphia.Datastore;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -18,16 +17,15 @@ import static org.mockito.MockitoAnnotations.initMocks;
 public class PersonWeightServiceTest {
     @Mock
     private Datastore datastore;
+    @Mock
     private UnderWeightRule underWeightRule;
     @Mock
     private OverWeightRule overWeightRule;
-
-    @Autowired
-    private PersonWeightService personWeightService;
     @Mock
     private AlertService alertService;
-    private PersonWeight personWeight;
 
+    private PersonWeightService personWeightService;
+    private PersonWeight personWeight;
     private Alert alert = new Alert();
 
 
