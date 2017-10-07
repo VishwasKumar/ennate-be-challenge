@@ -9,15 +9,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class AlertService {
     private final Datastore datastore;
-    private final AlertRepositoyImpl alertRepositoy;
+    private AlertRepositoyImpl alertRepositoy;
 
     @Autowired
-    public AlertService(Datastore datastore, AlertRepositoyImpl alertRepositoy) {
+    public AlertService(Datastore datastore) {
         this.datastore = datastore;
-        this.alertRepositoy = alertRepositoy;
     }
 
     public void commitAlert(Alert alert){
+        alertRepositoy = new AlertRepositoyImpl(datastore);
         alertRepositoy.create(alert);
     }
 }

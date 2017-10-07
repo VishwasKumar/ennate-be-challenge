@@ -29,10 +29,10 @@ public class PersonWeightServiceTest {
     private Alert alert = new Alert();
 
 
-    @Before
-    public void setUp(){
-        initMocks(this);
-        underWeightRule = new UnderWeightRule(alertService, alert);
+        @Before
+        public void setUp(){
+            initMocks(this);
+            underWeightRule = new UnderWeightRule(alertService, alert);
         overWeightRule = new OverWeightRule(alertService, alert);
         personWeightService = new PersonWeightService(datastore, underWeightRule, overWeightRule);
         personWeight = new PersonWeight();
