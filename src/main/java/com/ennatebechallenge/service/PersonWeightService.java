@@ -9,6 +9,8 @@ import org.mongodb.morphia.Datastore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import static org.easyrules.core.RulesEngineBuilder.aNewRulesEngine;
 
 @Service
@@ -25,6 +27,7 @@ public class PersonWeightService {
         this.underWeightRule = underWeightRule;
         this.overWeightRule = overWeightRule;
         rulesEngine = aNewRulesEngine().build();
+        metricsRepository = new MetricsRepositoryImpl(datastore);
     }
 
     public void saveWeightAndAlert(PersonWeight personWeight){
@@ -33,7 +36,6 @@ public class PersonWeightService {
     }
 
     private void commitPersonWeight(PersonWeight personWeight) {
-        this.metricsRepository = new MetricsRepositoryImpl(datastore);
         metricsRepository.create(personWeight);
     }
 
@@ -43,5 +45,13 @@ public class PersonWeightService {
         rulesEngine.registerRule(underWeightRule);
         rulesEngine.registerRule(overWeightRule);
         rulesEngine.fireRules();
+    }
+
+    public List<PersonWeight> getAllWeights() {
+        return metricsRepository.getAllMetrics();
+    }
+
+    public List<PersonWeight> getWeightsInRange(long start, long end) {
+        return metricsRepository.getMetricsInRange(start, end);
     }
 }

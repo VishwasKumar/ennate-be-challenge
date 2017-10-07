@@ -1,11 +1,14 @@
 package com.ennatebechallenge.repository.impl;
 
+import com.ennatebechallenge.model.Alert;
+import com.ennatebechallenge.model.PersonWeight;
 import com.ennatebechallenge.repository.CrudRepository;
 import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.Key;
+import org.mongodb.morphia.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class BaseRepository<T, ID extends Serializable> implements CrudRepository<T, ID> {
     private final Datastore datastore;
@@ -18,7 +21,32 @@ public class BaseRepository<T, ID extends Serializable> implements CrudRepositor
     }
 
     @Override
-    public Key<T> create(T entity) {
-        return datastore.save(entity);
+    public void create(T entity) {
+        datastore.save(entity);
+    }
+
+    @Override
+    public List<PersonWeight> getAllMetrics() {
+        final Query<PersonWeight> query = datastore.createQuery(PersonWeight.class);
+        return query.asList();
+    }
+
+    @Override
+    public List<Alert> getAllAlerts() {
+        final Query<Alert> query = datastore.createQuery(Alert.class);
+        return query.asList();
+    }
+
+    @Override
+    public List<PersonWeight> getMetricsInRange(long start, long end) {
+        Query<PersonWeight> query = datastore.createQuery(PersonWeight.class);
+        query = query.filter("timeStamp >=", start).filter("timeStamp <=", end);
+        return query.asList();
+    }
+
+    @Override
+    public List<Alert> getAlertInRange(long start, long end) {
+        return datastore.createQuery(Alert.class).filter("timeStamp >=", start)
+                .filter("timeStamp <=", end).asList();
     }
 }
