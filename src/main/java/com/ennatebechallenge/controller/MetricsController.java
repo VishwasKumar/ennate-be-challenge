@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/metrics")
 public class MetricsController {
-    private final PersonWeightService personWeightService;
+    private PersonWeightService personWeightService;
 
     @Autowired
     public MetricsController(PersonWeightService personWeightService) {
@@ -23,6 +23,7 @@ public class MetricsController {
     public void create(@RequestBody PersonWeight personWeight){
         personWeightService.saveWeightAndAlert(personWeight);
     }
+
 
 
 }

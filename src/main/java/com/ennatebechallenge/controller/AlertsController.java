@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class AlertsController {
     @RequestMapping("/alert")
     public String alert(){
-        return "Hey";
+        return "Get Request test";
     }
 }
