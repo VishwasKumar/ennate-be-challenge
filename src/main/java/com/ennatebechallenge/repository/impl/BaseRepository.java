@@ -4,6 +4,7 @@ import com.ennatebechallenge.model.Alert;
 import com.ennatebechallenge.model.PersonWeight;
 import com.ennatebechallenge.repository.CrudRepository;
 import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Key;
 import org.mongodb.morphia.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,9 +22,9 @@ public class BaseRepository<T, ID extends Serializable> implements CrudRepositor
     }
 
     @Override
-    public void create(T entity) {
+    public Key<T> create(T entity) {
         System.out.println("writing alert");
-        datastore.save(entity);
+        return datastore.save(entity);
     }
 
     @Override

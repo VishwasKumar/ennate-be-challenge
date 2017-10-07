@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 @Rule(name = "Under weight rule", description = "creates alert when under weight")
 public class UnderWeightRule extends WeightRule{
     @Autowired
-    public UnderWeightRule(AlertService service, Alert alert) {
-        super(service, alert);
+    public UnderWeightRule(AlertService service) {
+        super(service);
     }
 
     @Condition
@@ -23,8 +23,10 @@ public class UnderWeightRule extends WeightRule{
 
     @Action
     public void isUnderWeight(){
+        alert = new Alert();
         alert.setTimeStamp(personWeight.getTimeStamp());
         alert.setAlert("under-weight");
+        alert.setPersonWeight(personWeight);
         service.commitAlert(alert);
     }
 }

@@ -1,13 +1,12 @@
 package com.ennatebechallenge.model;
 
 import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Embedded;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Indexed;
 import org.mongodb.morphia.utils.IndexDirection;
-import org.springframework.stereotype.Component;
 
-@Component
 @Entity(value = "alert")
 public class Alert {
     @Id
@@ -15,6 +14,8 @@ public class Alert {
     private String alert;
     @Indexed(value = IndexDirection.ASC)
     private long timeStamp;
+    @Embedded
+    private PersonWeight personWeight;
 
 
 
@@ -40,5 +41,13 @@ public class Alert {
 
     public void setId(ObjectId id) {
         this.id = id;
+    }
+
+    public PersonWeight getPersonWeight() {
+        return personWeight;
+    }
+
+    public void setPersonWeight(PersonWeight personWeight) {
+        this.personWeight = personWeight;
     }
 }

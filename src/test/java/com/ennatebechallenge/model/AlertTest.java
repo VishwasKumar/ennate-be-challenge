@@ -21,4 +21,12 @@ public class AlertTest {
         alert.setTimeStamp(13235445);
         assertThat(alert.getTimeStamp(), is(13235445L));
     }
+
+    @Test
+    public void testPersonWeight() throws Exception {
+        PersonWeight personWeight = new PersonWeight();
+        assertNull(alert.getPersonWeight());
+        alert.setPersonWeight(personWeight);
+        assertThat(alert.getPersonWeight(), is(personWeight));
+    }
 }

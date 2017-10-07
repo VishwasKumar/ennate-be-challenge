@@ -16,9 +16,8 @@ public abstract class WeightRule {
     int rule = (int)(baseWeight * (rulePercent/100.0f));
 
     @Autowired
-    WeightRule(AlertService service, Alert alert){
+    WeightRule(AlertService service){
         this.service = service;
-        this.alert = alert;
     }
 
     public void setPersonWeight(PersonWeight personWeight) {
