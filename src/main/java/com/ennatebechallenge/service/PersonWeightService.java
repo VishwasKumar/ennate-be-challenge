@@ -30,9 +30,19 @@ public class PersonWeightService {
         metricsRepository = new MetricsRepositoryImpl(datastore);
     }
 
-    public void saveWeightAndAlert(PersonWeight personWeight){
-        saveAlert(personWeight);
-        commitPersonWeight(personWeight);
+    public void saveWeightAndAlert(PersonWeight personWeight) throws InterruptedException {
+        Thread alertSaver = new Thread(() -> saveAlert(personWeight));
+        Thread metricsSaver = new Thread(() -> commitPersonWeight(personWeight));
+        alertSaver.start();
+        metricsSaver.start();
+
+        try {
+            alertSaver.join();
+            metricsSaver.join();
+        } catch (InterruptedException e) {
+            System.out.println("Please do not interrupt which data is being stored");
+            throw new InterruptedException();
+        }
     }
 
     private void commitPersonWeight(PersonWeight personWeight) {

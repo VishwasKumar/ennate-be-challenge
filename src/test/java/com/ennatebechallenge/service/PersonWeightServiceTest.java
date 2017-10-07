@@ -55,7 +55,7 @@ public class PersonWeightServiceTest {
     }
 
     @Test
-    public void testUnderWeightRule(){
+    public void testUnderWeightRule() throws InterruptedException {
         personWeightService.saveWeightAndAlert(personWeight);
 
         assertThat(underWeightRule.getAlert().getAlert(), is("under-weight"));
@@ -64,7 +64,7 @@ public class PersonWeightServiceTest {
     }
 
     @Test
-    public void testOverWeightRule(){
+    public void testOverWeightRule() throws InterruptedException {
         personWeight.setWeight(200);
         personWeightService.saveWeightAndAlert(personWeight);
 

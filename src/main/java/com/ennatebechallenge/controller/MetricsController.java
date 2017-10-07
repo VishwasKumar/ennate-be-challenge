@@ -19,7 +19,7 @@ public class MetricsController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public void create(@RequestBody PersonWeight personWeight){
+    public void create(@RequestBody PersonWeight personWeight) throws InterruptedException {
         personWeightService.saveWeightAndAlert(personWeight);
     }
 
@@ -27,8 +27,8 @@ public class MetricsController {
     public @ResponseBody List<PersonWeight> getAllWeights
             (@RequestParam(value = "start", required = false, defaultValue = "-1")long start,
              @RequestParam(value = "stop", required = false, defaultValue = "-1")long stop){
-        return (start != -1 && stop != -1) ? personWeightService.getAllWeights() :
-                personWeightService.getWeightsInRange(start, stop);
+        return (start != -1 && stop != -1) ? personWeightService.getWeightsInRange(start, stop)
+                : personWeightService.getAllWeights();
     }
 
 }
