@@ -1,4 +1,4 @@
-package com.ennatebechallenge.repository.impl;
+package com.ennatebechallenge.service;
 
 import com.ennatebechallenge.model.PersonWeight;
 import org.junit.Before;
@@ -10,28 +10,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-public class MetricsRepositoryImplTest {
+public class MetricsServiceTest {
     @Mock
     private Datastore datastore;
     @Autowired
-    private MetricsRepositoryImpl metricsRepository;
+    private MetricsService metricsService;
 
     @Before
     public void setUp(){
         initMocks(this);
-        metricsRepository = new MetricsRepositoryImpl(datastore);
+        metricsService = new MetricsService(datastore);
     }
 
 
     @Test
-    public void create() throws Exception {
+    public void saveWeightData() throws Exception {
         PersonWeight personWeight = new PersonWeight();
         personWeight.setTimeStamp(1313045029);
         personWeight.setWeight(153);
 
-        metricsRepository.create(personWeight);
+        metricsService.saveWeightData(personWeight);
 
         verify(datastore).save(personWeight);
     }
-
 }
