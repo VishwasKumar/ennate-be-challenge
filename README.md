@@ -21,14 +21,14 @@ To run the emulator use the following command:
 * Exposes metrics data on Metric APIs using Spring MVC
     * **http://localhost:8080/metrics/read** to expose all the metrics 
     data collected.
-    * **http://localhost:8080/metrics/read?start={12334}&stop={43321}** 
+    * **http://localhost:8080/metrics/read?start=12334&stop=43321** 
     to expose only the data which fall between the start and stop ranges.
 
      
 * Expose alert data on Alert API using Spring MVC
     * **http://localhost:8080/alert/read** to expose all the metrics 
     data collected.
-    * **http://localhost:8080/alert/read?start={12334}&stop={43321}** 
+    * **http://localhost:8080/alert/read?start=12334&stop=43321** 
     to expose only the data which fall between the start and stop ranges.
 
 ### Notes ###
