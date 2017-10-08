@@ -50,8 +50,8 @@ public class BaseRepository<T, ID extends Serializable> implements CrudRepositor
     @Override
     public List<Alert> getAlertInRange(long start, long end) {
         return datastore.createQuery(Alert.class)
-                .filter("timeStamp >=", start)
-                .filter("timeStamp <=", end)
+                .filter("personWeight.timeStamp >=", start)
+                .filter("personWeight.timeStamp <=", end)
                 .asList();
     }
 }

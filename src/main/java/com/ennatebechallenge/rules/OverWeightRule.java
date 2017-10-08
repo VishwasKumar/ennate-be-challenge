@@ -1,5 +1,6 @@
 package com.ennatebechallenge.rules;
 
+import com.ennatebechallenge.model.Alert;
 import com.ennatebechallenge.service.AlertService;
 import org.easyrules.annotation.Action;
 import org.easyrules.annotation.Condition;
@@ -22,7 +23,7 @@ public class OverWeightRule extends WeightRule{
 
     @Action
     public void isOverWeight(){
-        alert.setTimeStamp(personWeight.getTimeStamp());
+        alert = new Alert();
         alert.setAlert("over-weight");
         alert.setPersonWeight(personWeight);
         service.commitAlert(alert);

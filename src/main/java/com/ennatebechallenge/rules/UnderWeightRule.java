@@ -24,7 +24,6 @@ public class UnderWeightRule extends WeightRule{
     @Action
     public void isUnderWeight(){
         alert = new Alert();
-        alert.setTimeStamp(personWeight.getTimeStamp());
         alert.setAlert("under-weight");
         alert.setPersonWeight(personWeight);
         service.commitAlert(alert);

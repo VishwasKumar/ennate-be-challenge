@@ -59,7 +59,6 @@ public class PersonWeightServiceTest {
         personWeightService.saveWeightAndAlert(personWeight);
 
         assertThat(underWeightRule.getAlert().getAlert(), is("under-weight"));
-        assertThat(underWeightRule.getAlert().getTimeStamp(), is(personWeight.getTimeStamp()));
         assertThat(underWeightRule.getAlert().getPersonWeight(), is(personWeight));
         verify(alertService).commitAlert(underWeightRule.getAlert());
     }
@@ -70,7 +69,6 @@ public class PersonWeightServiceTest {
         personWeightService.saveWeightAndAlert(personWeight);
 
         assertThat(overWeightRule.getAlert().getAlert(), is("over-weight"));
-        assertThat(overWeightRule.getAlert().getTimeStamp(), is(personWeight.getTimeStamp()));
         assertThat(overWeightRule.getAlert().getPersonWeight(), is(personWeight));
         verify(alertService).commitAlert(overWeightRule.getAlert());
     }

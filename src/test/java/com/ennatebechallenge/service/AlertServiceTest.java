@@ -28,7 +28,6 @@ public class AlertServiceTest {
 
     @Test
     public void testCommitAlert() throws Exception {
-        alert.setTimeStamp(123345);
         alert.setAlert("under-weight");
         alertService.commitAlert(alert);
         verify(datastore).save(alert);
