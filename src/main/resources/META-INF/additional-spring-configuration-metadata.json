@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "rules.baseWeight",
+      "type": "java.lang.Integer",
+      "description": "The base weight of the person."
+    },
+    {
+      "name": "rules.rulePercent",
+      "type": "java.lang.Float",
+      "description": "The percentage to define whether person is over weight or under weight."
+    }
+  ] }

@@ -3,7 +3,6 @@ spring:
     mongodb:
       database: morphia
       uri: mongodb://localhost:27017
-logging:
-  level:
-    root: info
-    com.jipasoft.morphia: debug
+rules:
+  baseWeight: 150
+  rulePercent: 10.0
