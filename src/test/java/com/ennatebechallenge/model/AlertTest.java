@@ -1,5 +1,6 @@
 package com.ennatebechallenge.model;
 
+import org.bson.types.ObjectId;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
@@ -21,5 +22,13 @@ public class AlertTest {
         assertNull(alert.getPersonWeight());
         alert.setPersonWeight(personWeight);
         assertThat(alert.getPersonWeight(), is(personWeight));
+    }
+
+    @Test
+    public void getId() throws Exception {
+        assertNull(alert.getId());
+        ObjectId id = new ObjectId();
+        alert.setId(id);
+        assertThat(alert.getId(), is(id));
     }
 }

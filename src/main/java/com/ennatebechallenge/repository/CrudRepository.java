@@ -8,9 +8,9 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface CrudRepository<T, ID extends Serializable> {
-    public Key<T> create(T entiry);
-    public List<PersonWeight> getAllMetrics();
-    public List<Alert> getAllAlerts();
-    public List<PersonWeight> getMetricsInRange(long start, long end);
-    public List<Alert> getAlertInRange(long start, long end);
+    Key<T> create(T entiry);
+    List<PersonWeight> getAllMetrics();
+    List<Alert> getAllAlerts();
+    List<PersonWeight> getMetricsInRange(long start, long end);
+    List<Alert> getAlertInRange(long start, long end);
 }
