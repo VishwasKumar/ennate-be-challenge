@@ -34,4 +34,9 @@ public abstract class WeightRule {
     public void setAlert(Alert alert) {
         this.alert = alert;
     }
+
+    public void setBaseValuesForTest(int baseWeight, float rulePercent){
+        this.baseWeight = baseWeight;
+        this.rulePercent = rulePercent;
+    }
 }
