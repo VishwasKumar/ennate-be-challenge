@@ -30,3 +30,9 @@ To run the emulator use the following command:
     data collected.
     * **http://localhost:8080/alert/read?start={12334}&stop={43321}** 
     to expose only the data which fall between the start and stop ranges
+
+### Notes ###
+
+* There are two rules *underWeight* and *overWeight* based on the rule 
+percentage and base weight build by using the easyrules rules engine.
+* 
